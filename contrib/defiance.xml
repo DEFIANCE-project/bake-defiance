@@ -24,6 +24,7 @@
             <source type="git">
                 <attribute name="url" value="https://gitlab.com/cttc-lena/nr" />
                 <attribute name="module_directory" value="nr" />
+                <attribute name="revision" value="5g-lena-v2.6.y" />
             </source>
             <build type="none">
             </build>
