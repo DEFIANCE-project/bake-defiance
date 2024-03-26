@@ -1,0 +1,32 @@
+<configuration>
+    <modules>
+        <module name="ns3-DEFIANCE" type="ns-contrib" min_version="3.40">
+            <source type="git">
+                <attribute name="url" value="git@gitlab.hpi.de:bp_defiance/openrangym.git" />
+                <attribute name="module_directory" value="DEFIANCE" />
+                <attribute name="branch" value="ns3-ai-integration" />
+            </source>
+            <build type="none">
+            </build>
+        </module>
+
+        <module name="ns3-ai" type="ns-contrib" min_version="3.40">
+            <source type="git">
+                <attribute name="url" value="git@gitlab.hpi.de:bp_defiance/ns3-ai.git" />
+                <attribute name="module_directory" value="ai" />
+                <attribute name="branch" value="main" />
+            </source>
+            <build type="none">
+            </build>
+        </module>
+
+        <module name="ns3-5g-lena" type="ns-contrib" min_version="3.40">
+            <source type="git">
+                <attribute name="url" value="https://gitlab.com/cttc-lena/nr" />
+                <attribute name="module_directory" value="nr" />
+            </source>
+            <build type="none">
+            </build>
+        </module>
+    </modules>
+</configuration>

@@ -1,0 +1,3 @@
+[submodule "bake"]
+	path = bake
+	url = https://gitlab.com/Kakadus1/bake

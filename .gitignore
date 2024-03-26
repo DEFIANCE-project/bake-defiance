@@ -1,0 +1,7 @@
+build
+source
+bakeconf.xml
+bakefile.xml
+bakeSetEnv.sh
+
+.DS_Store
