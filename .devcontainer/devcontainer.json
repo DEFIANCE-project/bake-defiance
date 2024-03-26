@@ -38,6 +38,9 @@
           "-DNS3_TESTS=ON"
         ],
         "git.repositoryScanMaxDepth": -1,
+        "clangd.arguments": [
+          "--compile-commands-dir=cmake-cache"
+        ]
       }
     }
   }
