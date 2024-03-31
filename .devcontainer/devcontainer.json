@@ -16,12 +16,10 @@
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
   },
-  
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-vscode-remote.remote-containers",
-        "streetsidesoftware.code-spell-checker",
         "ms-python.python",
         "eamodio.gitlens",
         "charliermarsh.ruff",
@@ -33,12 +31,18 @@
       "settings": {
         "extensions.verifySignature": false,
         "cmake.buildDirectory": "${workspaceFolder}/cmake-cache",
-        "cmake.configureArgs": [
-          "-DNS3_EXAMPLES=ON",
-          "-DNS3_PYTHON_BINDINGS=ON",
-          "-DNS3_TESTS=ON"
-        ],
-        "git.repositoryScanMaxDepth": -1,
+        "cmake.configureSettings": {
+          "-DPython3_INCLUDE_DIRS": "/usr/include/python3.10",
+          "-DPython3_EXECUTABLE": "/code/source/ns-3.40/contrib/DEFIANCE/.venv/bin/python3",
+          "-DNS3_ASSERT": "ON",
+          "-DNS3_LOG": "ON",
+          "-DNS3_WARNINGS_AS_ERRORS": "ON",
+          "-DNS3_NATIVE_OPTIMIZATIONS": "OFF",
+          "-DNS3_EXAMPLES": "ON",
+          "-DNS3_PYTHON_BINDINGS": "ON",
+          "-DNS3_TESTS": "ON"
+        },
+        "cmake.configureOnOpen": true,
         "clangd.arguments": [
           "--compile-commands-dir=cmake-cache"
         ]

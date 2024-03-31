@@ -41,7 +41,7 @@ What happens behind the curtain of `make download` and `make bootstrap`:
     bake.py fix-config
     ```
 
-### What are devcontainers?
+## What are devcontainers?
 
 To improve the developer experience we decided on using `Dev-Containers`. You may be familiar with Docker Containers: lightweight packages of software that contain everything to run your specific program. A `Dev-Container` furthermore includes all the tools necessary for you to develop the application. In order to use the `Dev-Container` you can open the project in `VS Code` and then use the option `Reopen in Container`.
 
@@ -50,7 +50,7 @@ To improve the developer experience we decided on using `Dev-Containers`. You ma
 Git is supported inside the Dev-Container per default. As the repository itself lives inside the mounted `/code` directory you will have to change to this directory, before using your git commands. Otherwise you might try to push to the `ns3` repository unintentionally.
 Note: Cou can open the repository in `VS Code` with `Strg+Shift+P -> Open Repository`. Now choose `/code`.
 
-## Using the ns3 build system
+### Using the ns3 build system
 
 As ns3 is mainly written in C++ you will have to compile your files before you can actually run your experiments. For this `cmake` is used by ns3.
 
@@ -59,9 +59,11 @@ Afterwards you can build the entire project with `./ns3 build` or a specific `cm
 
 Because ns3 uses `cmake`, every executable can simply be configured with an appropriate `CMakeLists.txt` entry. ns3 suggests using their custom macros for registering examples, tests and executables. Refer to the [docs](https://www.nsnam.org/docs/manual/html/working-with-cmake.html#executable-macros) for more information.
 
-## **CMake extension:**
+### CMake-Tools extension
 
 Inside the `Dev-Container` the CMake-Extension is activated. You can use the extension to easily debug the specific target you are working on.
 
 - `Strg+Shift+P` CMake: Set Build Target -> Specify the build target you want to run or debug.
 - `Strg+Shift+P` CMake: Debug -> Debug the build target. This will automatically rebuild if you changed relevant files.
+
+There are some pitfalls using the cmake extension: A complete rebuild is necessary, when cmake is reconfigured differently. This easily happens when mixing `ns3 configure` and cmake-tools. By default, configuring with cmake-tools is equivalent to `ns3 configure --enable-tests --enable-examples --enable-python -d debug`. Switching the build profile via cmake-tools is supported. Multiple build trees are not supported out of the box.
