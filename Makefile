@@ -3,7 +3,7 @@ NS3_HOME := $(shell pwd)/source/ns-3.40
 PATH := $(PATH):$(BAKE_HOME):$(NS3_HOME)
 PYTHONPATH := $(PYTHONPATH):$(BAKE_HOME)
 
-bootstrap: $(NS3_HOME)/ns3 $(NS3_HOME)/contrib/DEFIANCE $(NS3_HOME)/contrib/ai $(NS3_HOME)/contrib/nr
+bootstrap: $(NS3_HOME)/ns3 | $(NS3_HOME)/contrib/DEFIANCE $(NS3_HOME)/contrib/ai $(NS3_HOME)/contrib/nr
 	ns3 configure --enable-test --enable-python --enable-examples -d debug --out $(NS3_HOME)/build
 	ns3 build ai
 	cd $(NS3_HOME)/contrib/DEFIANCE && poetry install && pip install -e ../ai/python_utils && pip install -e ../ai/model/gym-interface/py
