@@ -2,7 +2,7 @@
     <modules>
         <module name="ns3-DEFIANCE" type="ns-contrib" min_version="3.40">
             <source type="git">
-                <attribute name="url" value="git@gitlab.hpi.de:bp_defiance/openrangym.git" />
+                <attribute name="url" value="git@gitlab.hpi.de:bp_defiance/ns3-defiance.git" />
                 <attribute name="module_directory" value="DEFIANCE" />
                 <attribute name="branch" value="ns3-ai-integration" />
             </source>
