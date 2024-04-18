@@ -5,3 +5,5 @@ bakefile.xml
 bakeSetEnv.sh
 
 .DS_Store
+
+training_results/*

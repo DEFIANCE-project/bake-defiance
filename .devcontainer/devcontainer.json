@@ -6,7 +6,8 @@
     "dockerfile": "./Dockerfile"
   },
   "mounts": [
-    "source=${localWorkspaceFolder},target=/code/,type=bind,consistency=cached"
+    "source=${localWorkspaceFolder},target=/code/,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/training_results,target=/root/ray_results,type=bind,consistency=cached"
   ],
   "workspaceFolder": "/code/source/ns-3.40",
   "containerEnv": {
@@ -26,7 +27,8 @@
         "ms-vscode.cmake-tools",
         "ms-vscode.makefile-tools",
         "ms-vscode.cpptools",
-        "llvm-vs-code-extensions.vscode-clangd"
+        "llvm-vs-code-extensions.vscode-clangd",
+        "tamasfe.even-better-toml"
       ],
       "settings": {
         "extensions.verifySignature": false,
