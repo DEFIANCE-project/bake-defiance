@@ -13,6 +13,7 @@
   "containerEnv": {
     "RAY_DEDUP_LOGS": "0"
   },
+  "initializeCommand": "mkdir -p source/ns-3.40",
   "postStartCommand": "cd /code && make bootstrap",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}

@@ -10,9 +10,11 @@ bootstrap: $(NS3_HOME)/ns3 | $(NS3_HOME)/contrib/DEFIANCE $(NS3_HOME)/contrib/ai
 
 download $(NS3_HOME)/ns3 $(NS3_HOME)/contrib/DEFIANCE $(NS3_HOME)/contrib/ai $(NS3_HOME)/contrib/nr: bake/bake.py bakefile.xml
 	bake.py fix-config
+	bake.py configure
 	bake.py download -vvv
 
 configure bakefile.xml: bake/bake.py
+	rm -rf build source bakeconf.xml bakefile.xml bakeSetEnv.sh
 	bake.py configure -e ns-3.40 -e ns3-DEFIANCE -e ns3-ai -e ns3-5g-lena
 
 submodule bake/bake.py:
