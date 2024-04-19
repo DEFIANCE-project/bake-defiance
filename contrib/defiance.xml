@@ -4,7 +4,7 @@
             <source type="git">
                 <attribute name="url" value="git@gitlab.hpi.de:bp_defiance/ns3-defiance.git" />
                 <attribute name="module_directory" value="DEFIANCE" />
-                <attribute name="branch" value="ns3-ai-integration" />
+                <attribute name="branch" value="main" />
             </source>
             <build type="none">
             </build>
