@@ -35,15 +35,15 @@
         "extensions.verifySignature": false,
         "cmake.buildDirectory": "${workspaceFolder}/cmake-cache",
         "cmake.configureSettings": {
-          "-DPython3_INCLUDE_DIRS": "/usr/include/python3.10",
-          "-DPython3_EXECUTABLE": "/code/source/ns-3.40/contrib/DEFIANCE/.venv/bin/python3",
-          "-DNS3_ASSERT": "ON",
-          "-DNS3_LOG": "ON",
-          "-DNS3_WARNINGS_AS_ERRORS": "ON",
-          "-DNS3_NATIVE_OPTIMIZATIONS": "OFF",
-          "-DNS3_EXAMPLES": "ON",
-          "-DNS3_PYTHON_BINDINGS": "ON",
-          "-DNS3_TESTS": "ON"
+          "Python3_INCLUDE_DIRS": "/usr/include/python3.10",
+          "Python3_EXECUTABLE": "/code/source/ns-3.40/contrib/DEFIANCE/.venv/bin/python3",
+          "NS3_ASSERT": "ON",
+          "NS3_LOG": "ON",
+          "NS3_WARNINGS_AS_ERRORS": "ON",
+          "NS3_NATIVE_OPTIMIZATIONS": "OFF",
+          "NS3_EXAMPLES": "ON",
+          "NS3_PYTHON_BINDINGS": "ON",
+          "NS3_TESTS": "ON"
         },
         "cmake.configureOnOpen": true,
         "clangd.arguments": [
