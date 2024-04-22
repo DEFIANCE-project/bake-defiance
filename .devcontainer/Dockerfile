@@ -20,3 +20,5 @@ ENV PATH="/code/bake:$PATH"
 ENV PATH="/code/source/ns-3.40:$PATH"
 # DEFIANCE venv
 ENV PATH="/code/source/ns-3.40/contrib/DEFIANCE/.venv/bin:$PATH"
+
+RUN git config --global --add safe.directory /code
