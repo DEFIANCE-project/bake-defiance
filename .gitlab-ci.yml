@@ -34,3 +34,5 @@ build:
   artifacts:
     paths:
       - source/ns-3.40
+    exclude:
+      - source/ns-3.40/build
