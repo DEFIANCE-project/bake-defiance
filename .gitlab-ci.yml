@@ -1,0 +1,32 @@
+image: docker:latest
+
+variables:
+  # Tell 'docker:dind' to enable TLS (recommended)
+  # and generate certificates in the specified directory.
+  DOCKER_TLS_CERTDIR: "/certs"
+  DEFAULT_IMG_NAME: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+
+default:
+  tags:
+    - docker
+
+services:
+  - name: docker:dind
+    command: ["--registry-mirror", "https://mirror.registry.openhpi.cloud"]
+
+before_script:
+  - apk add --update nodejs npm python3 make g++
+  - npm install -g @devcontainers/cli
+  - docker info
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+build:
+  stage: build
+  script:
+    - devcontainer build --workspace-folder . --log-level debug --image-name $DEFAULT_IMG_NAME --cache-from $CI_REGISTRY_IMAGE:latest
+    #  Clone via https only and log in via token
+    - sed -E "s,git@([^:]*):/*(.*)$,https://gitlab-ci-token:${CI_JOB_TOKEN}@\1/\2," -i contrib/defiance.xml
+    - devcontainer up --workspace-folder . --log-level debug
+    - docker commit $(docker ps -l --quiet) $DEFAULT_IMG_NAME
+    - if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then docker tag $DEFAULT_IMG_NAME $CI_REGISTRY_IMAGE:latest; fi
+    - docker push $CI_REGISTRY_IMAGE --all-tags
