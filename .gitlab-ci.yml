@@ -35,6 +35,6 @@ build:
     paths:
       - source/ns-3.40
     exclude:
-      - source/ns-3.40/build
-      - source/ns-3.40/cmake-cache
+      - source/ns-3.40/build/**/*
+      - source/ns-3.40/cmake-cache/**/*
       - source/ns-3.40/.lock-ns3_linux_build
