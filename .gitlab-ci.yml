@@ -27,6 +27,9 @@ build:
     #  Clone via https only and log in via token
     - sed -E "s,git@([^:]*):/*(.*)$,https://gitlab-ci-token:${CI_JOB_TOKEN}@\1/\2," -i contrib/defiance.xml
     - devcontainer up --workspace-folder . --log-level debug
-    - docker commit $(docker ps -l --quiet) $DEFAULT_IMG_NAME
     - if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then docker tag $DEFAULT_IMG_NAME $CI_REGISTRY_IMAGE:latest; fi
     - docker push $CI_REGISTRY_IMAGE --all-tags
+ 
+  artifacts:
+    paths:
+      - source/ns-3.40
