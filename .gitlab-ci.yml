@@ -19,6 +19,7 @@ before_script:
   - npm install -g @devcontainers/cli
   - docker info
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  - docker pull $CI_REGISTRY_IMAGE:latest
 
 build:
   stage: build
