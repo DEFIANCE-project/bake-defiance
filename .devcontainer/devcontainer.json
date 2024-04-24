@@ -44,7 +44,7 @@
           "NS3_EXAMPLES": "ON",
           "NS3_PYTHON_BINDINGS": "ON",
           "NS3_TESTS": "ON",
-          "NS3_ENABLED_MODULES": "point-to-point,point-to-point-layout,network,applications,mobility,csma,internet,flow-monitor,lte,wifi,energy,ai,DEFIANCE"
+          "NS3_ENABLED_MODULES": "point-to-point,point-to-point-layout,network,applications,mobility,csma,internet,flow-monitor,lte,wifi,energy,ai,DEFIANCE,netanim"
         },
         "cmake.configureOnOpen": true,
         "clangd.arguments": [
