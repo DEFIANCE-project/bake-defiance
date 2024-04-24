@@ -34,6 +34,7 @@ build:
   artifacts:
     paths:
       - source/ns-3.40
+      - Makefile
     exclude:
       - source/ns-3.40/build/**/*
       - source/ns-3.40/cmake-cache/**/*
