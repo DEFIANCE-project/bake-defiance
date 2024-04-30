@@ -13,7 +13,7 @@ RUN pip install poetry cppyy==2.4.2
 RUN add-apt-repository ppa:sumo/stable
 RUN apt-get install -y sumo sumo-tools sumo-doc
 ENV SUMO_HOME="/usr/share/sumo"
-ENV NS3_HOME="/code/ns3"
+ENV NS3_HOME="/code/source/ns-3.40"
 
 # bake helper
 ENV PATH="/code/bake:$PATH"
