@@ -23,8 +23,8 @@ ENV NS3_HOME="/code/source/ns-3.40"
 ENV PATH="/code/bake:$PATH"
 # ns helper
 ENV PATH="/code/source/ns-3.40:$PATH"
-# DEFIANCE venv
-ENV PATH="/code/source/ns-3.40/contrib/DEFIANCE/.venv/bin:$PATH"
+# defiance venv
+ENV PATH="/code/source/ns-3.40/contrib/defiance/.venv/bin:$PATH"
 # ccache
 ENV CCACHE_SLOPPINESS=pch_defines,time_macros
 
