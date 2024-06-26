@@ -1,6 +1,6 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
 {
-  "name": "DEFIANCE",
+  "name": "defiance",
   "build": {
     "context": "..",
     "dockerfile": "./Dockerfile"
@@ -36,7 +36,7 @@
         "cmake.buildDirectory": "${workspaceFolder}/cmake-cache",
         "cmake.configureSettings": {
           "Python3_INCLUDE_DIRS": "/usr/include/python3.10",
-          "Python3_EXECUTABLE": "/code/source/ns-3.40/contrib/DEFIANCE/.venv/bin/python3",
+          "Python3_EXECUTABLE": "/code/source/ns-3.40/contrib/defiance/.venv/bin/python3",
           "NS3_ASSERT": "ON",
           "NS3_LOG": "ON",
           "NS3_WARNINGS_AS_ERRORS": "ON",
@@ -44,7 +44,7 @@
           "NS3_EXAMPLES": "ON",
           "NS3_PYTHON_BINDINGS": "ON",
           "NS3_TESTS": "ON",
-          "NS3_ENABLED_MODULES": "point-to-point,point-to-point-layout,network,applications,mobility,csma,internet,flow-monitor,lte,wifi,energy,ai,DEFIANCE,netanim"
+          "NS3_ENABLED_MODULES": "point-to-point,point-to-point-layout,network,applications,mobility,csma,internet,flow-monitor,lte,wifi,energy,ai,defiance,netanim"
         },
         "cmake.configureOnOpen": true,
         "clangd.arguments": [

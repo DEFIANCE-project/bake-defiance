@@ -1,4 +1,4 @@
-# Bake setup helper for ns-DEFIANCE
+# Bake setup helper for ns-defiance
 
 ## Preparations
 
@@ -18,19 +18,19 @@ What happens behind the curtain of `make download` and `make bootstrap`:
 
     The following steps assume `bake.py` is accessible on the path
 
-1. A `bakefile.xml` is needed with the right configuration for ns-DEFIANCE. To create it from bake, run
+1. A `bakefile.xml` is needed with the right configuration for ns-defiance. To create it from bake, run
 
     ```bash
-    bake.py configure -e ns-3.40 -e ns3-DEFIANCE -e ns3-ai -e ns3-5g-lena
+    bake.py configure -e ns-3.40 -e ns3-defiance -e ns3-ai -e ns3-5g-lena
     ```
 
-1. Now you can download the ns3 with its modules with `bake.py download`. Afterwards, <source/ns-3.40> contains the sources to build and run ns-DEFIANCE.
+1. Now you can download the ns3 with its modules with `bake.py download`. Afterwards, <source/ns-3.40> contains the sources to build and run ns-defiance.
 
 1. From this point on, you can setup ns3-ai and install the python dependencies:
 
     ```bash
     ns3 build ai
-    cd contrib/DEFIANCE
+    cd contrib/defiance
     poetry install
     pip install -e ../ai/python_utils && pip install -e ../ai/model/gym-interface/py
     ```
