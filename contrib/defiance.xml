@@ -2,7 +2,7 @@
     <modules>
         <module name="ns3-defiance" type="ns-contrib" min_version="3.40">
             <source type="git">
-                <attribute name="url" value="git@gitlab.hpi.de:bp_defiance/ns3-defiance.git" />
+                <attribute name="url" value="https://github.com/DEFIANCE-project/ns3-defiance.git" />
                 <attribute name="module_directory" value="defiance" />
                 <attribute name="branch" value="main" />
             </source>
@@ -12,7 +12,7 @@
 
         <module name="ns3-ai" type="ns-contrib" min_version="3.40">
             <source type="git">
-                <attribute name="url" value="git@gitlab.hpi.de:bp_defiance/ns3-ai.git" />
+                <attribute name="url" value="https://github.com/DEFIANCE-project/ns3-ai.git" />
                 <attribute name="module_directory" value="ai" />
                 <attribute name="branch" value="main" />
             </source>
