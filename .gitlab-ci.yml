@@ -26,7 +26,7 @@ build:
   script:
     - devcontainer build --workspace-folder . --log-level debug --image-name $DEFAULT_IMG_NAME --cache-from $CI_REGISTRY_IMAGE:latest
     #  Clone via https only and log in via token
-    - sed -E "s,git@([^:]*):/*(.*)$,https://gitlab-ci-token:${CI_JOB_TOKEN}@\1/\2," -i contrib/defiance.xml
+    - sed -E "s,https://github.com/DEFIANCE-project,https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.hpi.de/bp_DEFIANCE," -i contrib/defiance.xml
     - devcontainer up --workspace-folder . --log-level debug
     - echo "$CI_COMMIT_BRANCH"
     - echo "$CI_COMMIT_REF_NAME"
