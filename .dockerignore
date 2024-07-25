@@ -1,0 +1,13 @@
+build
+source
+bakeconf.xml
+bakefile.xml
+bakeSetEnv.sh
+venv
+
+.*
+
+training_results/*
+
+Dockerfile
+__pycache__

@@ -2,37 +2,53 @@
 
 ## Preparations
 
-TL;DR: Start and build the devcontainer.
+TL;DR: Start and build the devcontainer. If you are using vscode, see [here](https://code.visualstudio.com/docs/devcontainers/containers) for more information about developing in devcontainers.
+
+### Docker
+
+Otherwise, we support building ns3-definace as a docker container for the most seamless experience.
+
+First, build the base image with `docker build . -f .devcontainer/Dockerfile -t defiance-devcontainer`.
+
+Then, you can build the full image with a simple `docker build .`. The ns3 root directory is the default working directory or at `$NS3_HOME`. To build ns3 and ns3-defiance as well, you can add `--build-arg BUILD_NS3=True`.
+
+### Semi-automated
+
+For a semi-automated install, there is a `Makefile`:
+
+Clone the repository and run `make bootstrap`. Then, you can build ns3 with `bake` or the ns3 wrapper.
+
+It can be nice to add the tools to your path and set some environment variables:
+
+```shell
+export BAKE_HOME="`pwd`/bake"
+export PYTHONPATH="$PYTHONPATH":"$BAKE_HOME"
+export SUMO_HOME="/usr/share/sumo"
+export NS3_HOME="`pwd`/source/ns-3.40"
+export PATH="$PATH":"$BAKE_HOME":"$NS3_HOME"
+```
+
+The `Makefile` assumes that all required dependencies are installed. Refer to [.devcontainer/Dockerfile](.devcontainer/Dockerfile) for a complete list of all development dependencies. If there are missing dependencies, `bake` will warn you about them when running `make bootstrap`.
 
 What happens behind the curtain of `make download` and `make bootstrap`:
 
 1. [`bake`](http://planete.inria.fr/software/bake/index.html) is added via a git submodule. So, clone this with the `--recursive` flag or run `git submodule update --init`.
 
-1. For local development, it can be nice to add `bake.py` to path:
-
-    ```shell
-    export BAKE_HOME=`pwd`/bake
-    export PATH="$PATH":"$BAKE_HOME"
-    export PYTHONPATH="$PYTHONPATH":"$BAKE_HOME"
-    ```
-
-    The following steps assume `bake.py` is accessible on the path
-
-1. A `bakefile.xml` is needed with the right configuration for ns-defiance. To create it from bake, run
+1. A `bakefile.xml` is needed with the right configuration for ns3-defiance. To create it from bake, run
 
     ```bash
     bake.py configure -e ns-3.40 -e ns3-defiance -e ns3-ai -e ns3-5g-lena
     ```
 
-1. Now you can download the ns3 with its modules with `bake.py download`. Afterwards, <source/ns-3.40> contains the sources to build and run ns-defiance.
+1. Now you can download ns3 with its modules with `bake.py download`. Afterwards, `source/ns-3.40` contains the sources to build and run ns-defiance.
 
-1. From this point on, you can setup ns3-ai and install the python dependencies:
+1. From this point on, ns3-ai is setup up and everything is being installed with its python dependencies:
 
     ```bash
     ns3 build ai
     cd contrib/defiance
     poetry install
-    pip install -e ../ai/python_utils && pip install -e ../ai/model/gym-interface/py
+    pip install -e ../ai/python_utils -e ../ai/model/gym-interface/py
     ```
 
 1. If you have modified the `defiance.xml`, you need to use
@@ -40,6 +56,10 @@ What happens behind the curtain of `make download` and `make bootstrap`:
     ```shell
     bake.py fix-config
     ```
+
+    This is done automatically by `make bootstrap`.
+
+1. Finally, you can build ns3 with `bake` or by using the ns3 wrapper.
 
 ## What are devcontainers?
 
