@@ -4,7 +4,7 @@ PATH := $(PATH):$(BAKE_HOME):$(NS3_HOME)
 PYTHONPATH := $(PYTHONPATH):$(BAKE_HOME)
 
 bootstrap: $(NS3_HOME)/ns3 | $(NS3_HOME)/contrib/defiance $(NS3_HOME)/contrib/ai $(NS3_HOME)/contrib/nr
-	ns3 configure --enable-test --enable-python --enable-examples --enable-modules=point-to-point,point-to-point-layout,network,applications,mobility,csma,internet,flow-monitor,lte,wifi,energy,ai,defiance,netanim -d debug --out $(NS3_HOME)/build
+	ns3 configure --disable-werror --enable-test --enable-python --enable-examples --enable-modules=point-to-point,point-to-point-layout,network,applications,mobility,csma,internet,flow-monitor,lte,wifi,energy,ai,defiance,netanim -d debug --out $(NS3_HOME)/build
 	ns3 build ai
 	cd $(NS3_HOME)/contrib/defiance && poetry install && pip install -e ../ai/python_utils && pip install -e ../ai/model/gym-interface/py
 
