@@ -1,0 +1,7 @@
+*
+!source/*/build
+!source/*/contrib/ai
+!source/*/contrib/defiance
+
+*.h
+*.cc
