@@ -10,7 +10,9 @@ Otherwise, we support building ns3-definace as a docker container for the most s
 
 First, build the base image with `docker build . -f .devcontainer/Dockerfile -t defiance-devcontainer`.
 
-Then, you can build the full image with a simple `docker build .`. The ns3 root directory is the default working directory or at `$NS3_HOME`. To build ns3 and ns3-defiance as well, you can add `--build-arg BUILD_NS3=True`.
+Then, you can build the full image with `docker build -f Dockerfile-development`. The ns3 root directory is the default working directory and at `$NS3_HOME`. To build ns3 and ns3-defiance as well, you can add `--build-arg BUILD_NS3=True`.
+
+For training e.g. in a cluster, it is convenient to have a small docker image with all requirements necessary for training. For this, there is `Dockerfile-train`. Once you have built a ns3-ai simulation, you can run `docker build -f Dockerfile-train` to build an image containing runtime dependencies only and all your built simulations. Inside it, you can start training on our examples right away with e.g. `run-agent train -n ./contrib/defiance/ns3.40-defiance-balance2`.
 
 ### Semi-automated
 
@@ -57,7 +59,7 @@ What happens behind the curtain of `make download` and `make bootstrap`:
     bake.py fix-config
     ```
 
-    This is done automatically by `make bootstrap`.
+   This is done automatically by `make bootstrap`.
 
 1. Finally, you can build ns3 with `bake` or by using the ns3 wrapper.
 
