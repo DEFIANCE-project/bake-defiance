@@ -11,6 +11,7 @@ variables:
 default:
   tags:
     - docker
+    - openhpi-cloud
 
 services:
   - name: docker:dind
