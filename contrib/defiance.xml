@@ -19,15 +19,5 @@
             <build type="none">
             </build>
         </module>
-
-        <module name="ns3-5g-lena" type="ns-contrib" min_version="3.40">
-            <source type="git">
-                <attribute name="url" value="https://gitlab.com/cttc-lena/nr" />
-                <attribute name="module_directory" value="nr" />
-                <attribute name="branch" value="5g-lena-v2.6.y" />
-            </source>
-            <build type="none">
-            </build>
-        </module>
     </modules>
 </configuration>
