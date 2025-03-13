@@ -3,5 +3,9 @@
 !source/*/contrib/ai
 !source/*/contrib/defiance
 
-*.h
-*.cc
+**/.venv
+**/__*cache*
+**/doc
+**/*.cc
+**/*.h
+**/.*
