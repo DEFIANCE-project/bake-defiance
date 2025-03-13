@@ -1,16 +1,20 @@
-FROM ubuntu:jammy AS venv-builder
+FROM ubuntu:jammy
 
 RUN apt-get update && apt-get -y install python3-pip python3-venv python-is-python3 libgl1-mesa-glx libglib2.0-0 libprotobuf23 libxml2 && pip install poetry
 
-COPY source/*/contrib/ai ai
-COPY source/*/contrib/defiance defiance
-
-# bundle ns-defiance into venv
 ENV POETRY_VIRTUALENVS_IN_PROJECT=true
-RUN cd defiance && poetry install
+
+COPY source/*/contrib/defiance/pyproject.toml source/*/contrib/defiance/poetry* /defiance/
+RUN cd defiance && poetry install --no-root --without local
+
 ENV VIRTUAL_ENV=/defiance/.venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install -e /ai/model/gym-interface/py/
+
+COPY source/ns-3.40/build /build
+
+COPY source/ns-3.40/contrib/defiance defiance
+COPY source/*/contrib/ai ai
+RUN cd defiance && poetry install
 
 # copy and activate built ns3
 COPY source/*/build build

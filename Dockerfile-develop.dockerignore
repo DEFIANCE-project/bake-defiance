@@ -10,4 +10,4 @@ venv
 training_results/*
 
 Dockerfile
-__pycache__
+__*cache__
