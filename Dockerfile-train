@@ -21,4 +21,4 @@ COPY source/*/build build
 ENV LD_LIBRARY_PATH="/build/lib"
 ENV NS3_HOME=/
 
-WORKDIR /build
+WORKDIR /
