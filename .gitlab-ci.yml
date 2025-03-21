@@ -22,9 +22,8 @@ build-devcontainer:
   before_script:
     - docker info
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker pull $CI_REGISTRY_IMAGE:latest
   script:
-    - docker build . -f .devcontainer/Dockerfile -t $DEFAULT_IMG_NAME --cache-from $CI_REGISTRY_IMAGE:latest
+    - docker buildx build . -f .devcontainer/Dockerfile -t $DEFAULT_IMG_NAME --cache-to type=inline --cache-from type=registry,ref=$DEFAULT_IMG_NAME
     - echo "$CI_COMMIT_BRANCH"
     - echo "$CI_COMMIT_REF_NAME"
     - if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then docker tag $DEFAULT_IMG_NAME $CI_REGISTRY_IMAGE:latest; fi
@@ -38,7 +37,7 @@ full-build:
     - docker info
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY_IMAGE
   script:
-    - docker build . -f Dockerfile-develop --build-arg BASE=$DEFAULT_IMG_NAME -t $FULL_IMG_NAME
+    - docker buildx build . -f Dockerfile-develop --build-arg BASE=$DEFAULT_IMG_NAME -t $FULL_IMG_NAME --cache-to type=inline --cache-from type=registry,ref=$CI_REGISTRY_IMAGE:latest-full
     - if [[ "$CI_COMMIT_BRANCH" == "main" ]]; then docker tag $FULL_IMG_NAME $CI_REGISTRY_IMAGE:latest-full; fi
     - docker push $CI_REGISTRY_IMAGE --all-tags
 
@@ -49,11 +48,10 @@ devcontainer-bootup:
   before_script:
     - docker info
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker pull $DEFAULT_IMG_NAME
     - apk add --update nodejs npm python3 make g++
     - npm install -g @devcontainers/cli
   script:
-    - devcontainer build --workspace-folder . --log-level debug --image-name $DEFAULT_IMG_NAME --cache-from $DEFAULT_IMG_NAME
+    - devcontainer build --workspace-folder . --log-level debug --image-name $DEFAULT_IMG_NAME --cache-from type=registry,ref=$CI_REGISTRY_IMAGE:latest-full
     #  Clone via https only and log in via token
     - sed -E "s,https://github.com/DEFIANCE-project,https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.hpi.de/bp_DEFIANCE," -i contrib/defiance.xml
     - devcontainer up --workspace-folder . --log-level debug
