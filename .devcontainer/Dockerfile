@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:noble
 WORKDIR /code
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -14,12 +14,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # setup docs creation
-RUN sed -i "s/EPS,PDF,//g" /etc/ImageMagick-6/policy.xml
-RUN sed -i "s/none/read\ |\ write/g" /etc/ImageMagick-6/policy.xml
+RUN sed -i "s/EPS,PDF,//g" /etc/ImageMagick-6/policy.xml && sed -i "s/none/read\ |\ write/g" /etc/ImageMagick-6/policy.xml
 
-# sumo
-RUN add-apt-repository ppa:sumo/stable
-RUN apt-get install -y sumo sumo-tools sumo-doc
+# env
 ENV SUMO_HOME="/usr/share/sumo"
 ENV NS3_HOME="/code/ns-3"
 
