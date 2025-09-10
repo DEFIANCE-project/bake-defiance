@@ -5,6 +5,8 @@ FROM --platform=amd64 $BASE
 
 COPY . .
 
+ADD https://api.github.com/repos/DEFIANCE-project/ns3-DEFIANCE/commits?per_page=1 ns3-defiance-latest-commit.json
+ADD https://api.github.com/repos/DEFIANCE-project/ns3-ai/commits?per_page=1 ns3-ai-latest-commit.json
 RUN apt-get remove -y git-lfs && make bootstrap && apt-get install -y git-lfs
 
 WORKDIR $NS3_HOME
