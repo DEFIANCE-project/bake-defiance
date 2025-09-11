@@ -52,15 +52,13 @@ devcontainer-bootup:
     - npm install -g @devcontainers/cli
   script:
     - devcontainer build --workspace-folder . --log-level debug --image-name $DEFAULT_IMG_NAME --cache-from type=registry,ref=$CI_REGISTRY_IMAGE:latest-full
-    #  Clone via https only and log in via token
-    - sed -E "s,https://github.com/DEFIANCE-project,https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.hpi.de/bp_DEFIANCE," -i contrib/defiance.xml
     - devcontainer up --workspace-folder . --log-level debug
 
   artifacts:
     paths:
-      - source/ns-3.40
+      - ns-3
       - Makefile
     exclude:
-      - source/ns-3.40/build/**/*
-      - source/ns-3.40/cmake-cache/**/*
-      - source/ns-3.40/.lock-ns3_linux_build
+      - ns-3/build/**/*
+      - ns-3/cmake-cache/**/*
+      - ns-3/.lock-ns3_linux_build

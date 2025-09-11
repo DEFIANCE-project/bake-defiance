@@ -1,13 +1,8 @@
-# build .devcontainer/Dockerfile first
-ARG BASE=defiance-devcontainer  
-
-FROM --platform=amd64 $BASE
+FROM ghcr.io/defiance-project/bake-defiance:latest
 
 COPY . .
 
-ADD https://api.github.com/repos/DEFIANCE-project/ns3-DEFIANCE/commits?per_page=1 ns3-defiance-latest-commit.json
-ADD https://api.github.com/repos/DEFIANCE-project/ns3-ai/commits?per_page=1 ns3-ai-latest-commit.json
-RUN apt-get remove -y git-lfs && make bootstrap && apt-get install -y git-lfs
+RUN apt-get update && apt-get remove -y git-lfs && make download && make clean && make bootstrap && apt-get install -y git-lfs && rm -rf /var/lib/apt/lists/*
 
 WORKDIR $NS3_HOME
 

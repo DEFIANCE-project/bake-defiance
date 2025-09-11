@@ -1,3 +1,12 @@
-[submodule "bake"]
-	path = bake
-	url = https://gitlab.com/Kakadus1/bake
+[submodule "ns-3"]
+	path = ns-3
+	url = https://gitlab.com/nsnam/ns-3-dev/
+	branch = ns-3.45
+
+[submodule "ns3-DEFIANCE"]
+	path = ns3-DEFIANCE
+	url = https://github.com/DEFIANCE-project/ns3-DEFIANCE.git
+
+[submodule "ns3-ai"]
+	path = ns3-ai
+	url = https://github.com/DEFIANCE-project/ns3-ai.git
