@@ -6,62 +6,45 @@ TL;DR: Start and build the devcontainer. If you are using vscode, see [here](htt
 
 ### Docker
 
-Otherwise, we support building ns3-definace as a docker container for the most seamless experience.
+Otherwise, we support building ns3-definace as a docker image for the most seamless experience.
 
-First, build the base image with `docker build . -f .devcontainer/Dockerfile -t defiance-devcontainer`.
+First, build the base image with `docker build . -f .devcontainer/Dockerfile` which only contains development dependencies.
+A prebuilt image is available at ghcr.io/defiance-project/bake-defiance:latest.
 
 Then, you can build the full image with `docker build -f Dockerfile-development`. The ns3 root directory is the default working directory and at `$NS3_HOME`. To build ns3 and ns3-defiance as well, you can add `--build-arg BUILD_NS3=True`.
-
-For training e.g. in a cluster, it is convenient to have a small docker image with all requirements necessary for training. For this, there is `Dockerfile-train`. Once you have built a ns3-ai simulation, you can run `docker build -f Dockerfile-train` to build an image containing runtime dependencies only and all your built simulations. Inside it, you can start training on our examples right away with e.g. `run-agent train -n ./contrib/defiance/ns3.40-defiance-balance2`.
+i
 
 ### Semi-automated
 
 For a semi-automated install, there is a `Makefile`:
 
-Clone the repository and run `make bootstrap`. Then, you can build ns3 with `bake` or the ns3 wrapper.
+Clone the repository and run `make bootstrap`. Then, you can build ns3 with the ns3 wrapper in the `ns-3` submodule.
 
 It can be nice to add the tools to your path and set some environment variables:
 
 ```shell
-export BAKE_HOME="`pwd`/bake"
-export PYTHONPATH="$PYTHONPATH":"$BAKE_HOME"
 export SUMO_HOME="/usr/share/sumo"
-export NS3_HOME="`pwd`/source/ns-3.40"
-export PATH="$PATH":"$BAKE_HOME":"$NS3_HOME"
+export NS3_HOME="`pwd`/ns-3"
+export PATH="$PATH":"$NS3_HOME"
 ```
 
-The `Makefile` assumes that all required dependencies are installed. Refer to [.devcontainer/Dockerfile](.devcontainer/Dockerfile) for a complete list of all development dependencies. If there are missing dependencies, `bake` will warn you about them when running `make bootstrap`.
+The `Makefile` assumes that all required dependencies are installed. Refer to [.devcontainer/Dockerfile](.devcontainer/Dockerfile) for a complete list of all development dependencies. If there are missing dependencies, downstream tasks may fail.
 
 What happens behind the curtain of `make download` and `make bootstrap`:
 
-1. [`bake`](http://planete.inria.fr/software/bake/index.html) is added via a git submodule. So, clone this with the `--recursive` flag or run `git submodule update --init`.
+1. [`ns3-DEFIANCE`](https://github.com/DEFIANCE-project/ns3-DEFIANCE), [`ns3-ai`](https://github.com/DEFIANCE-project/ns3-ai) [`ns-3`](https://gitlab.com/nsnam/ns-3-dev/)  is added via a git submodule. So, clone this with the `--recursive` flag or run `git submodule update --init`.
 
-1. A `bakefile.xml` is needed with the right configuration for ns3-defiance. To create it from bake, run
-
-    ```bash
-    bake.py configure -e ns-3.40 -e ns3-defiance -e ns3-ai -e ns3-5g-lena
-    ```
-
-1. Now you can download ns3 with its modules with `bake.py download`. Afterwards, `source/ns-3.40` contains the sources to build and run ns-defiance.
+1. The `defiance` and `ai` modules need to be placed into `ns-3/contrib`. This is atchieved by creating `git worktree`s there.
 
 1. From this point on, ns3-ai is setup up and everything is being installed with its python dependencies:
 
     ```bash
+    poetry -C contrib/defiance install --without local
     ns3 build ai
-    cd contrib/defiance
-    poetry install
-    pip install -e ../ai/python_utils -e ../ai/model/gym-interface/py
+    poetry -C contrib/defiance install --with local
     ```
 
-1. If you have modified the `defiance.xml`, you need to use
-
-    ```shell
-    bake.py fix-config
-    ```
-
-   This is done automatically by `make bootstrap`.
-
-1. Finally, you can build ns3 with `bake` or by using the ns3 wrapper.
+1. Finally, you can build ns3 with the wrapper.
 
 ## What are devcontainers?
 
