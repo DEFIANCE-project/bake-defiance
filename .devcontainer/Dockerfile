@@ -7,7 +7,7 @@ ARG TZ=Europe/Berlin
 # Dependencies
 ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 RUN apt-get update && \
-    apt-get install -y build-essential ccache clang-format cmake default-jdk dia doxygen dvipng ffmpeg gdb git git-lfs graphviz imagemagick latexmk libboost-dev libboost-program-options-dev libc6-dev libeigen3-dev libfox-1.6-dev libgdal-dev libgl2ps-dev libproj-dev libprotobuf-dev libsqlite3-dev libxerces-c-dev make maven ninja-build protobuf-compiler pybind11-dev python3-dev python3-gi python3-jinja2 python3-opencv python3-pip python3-pygments python3-sphinx python3-venv python3-poetry python-is-python3 software-properties-common sqlite3 swig texlive texlive-base texlive-fonts-extra texlive-font-utils texlive-formats-extra texlive-science unzip && \
+    apt-get install -y build-essential ccache clang-format cmake default-jdk dia doxygen dvipng ffmpeg gdb git git-lfs graphviz imagemagick latexmk libboost-dev libboost-program-options-dev libc6-dev libeigen3-dev libfox-1.6-dev libgdal-dev libgl2ps-dev libproj-dev libprotobuf-dev libabsl-dev libsqlite3-dev libxerces-c-dev make maven ninja-build protobuf-compiler pybind11-dev python3-dev python3-gi python3-jinja2 python3-opencv python3-pip python3-pygments python3-sphinx python3-venv python3-poetry python-is-python3 software-properties-common sqlite3 swig texlive texlive-base texlive-fonts-extra texlive-font-utils texlive-formats-extra texlive-science unzip && \
     # sumo
     add-apt-repository ppa:sumo/stable && \
     apt-get install -y sumo sumo-tools sumo-doc && \
