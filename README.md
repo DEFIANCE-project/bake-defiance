@@ -1,4 +1,4 @@
-# Bake setup helper for ns-defiance
+# Setup helper for ns-defiance
 
 ## Preparations
 
