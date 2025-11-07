@@ -7,8 +7,9 @@
   },
   "mounts": [
     "source=${localWorkspaceFolder},target=/code/,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/training_results,target=/root/ray_results,type=bind,consistency=cached"
-  ],
+    "source=${localWorkspaceFolder}/training_results,target=/root/ray_results,type=bind,consistency=cached",
+    "source=cache,target=/root/.cache,type=volume"
+    ],
   "workspaceFolder": "/code/ns-3",
   "containerEnv": {
     "RAY_DEDUP_LOGS": "0"
@@ -34,7 +35,7 @@
         "extensions.verifySignature": false,
         "cmake.buildDirectory": "${workspaceFolder}/cmake-cache",
         "cmake.configureSettings": {
-          "Python3_EXECUTABLE": "/code/source/ns-3/contrib/defiance/.venv/bin/python3",
+          "Python3_EXECUTABLE": "/code/ns-3/contrib/defiance/.venv/bin/python3",
           "NS3_ASSERT": "ON",
           "NS3_LOG": "ON",
           "NS3_WARNINGS_AS_ERRORS": "ON",
